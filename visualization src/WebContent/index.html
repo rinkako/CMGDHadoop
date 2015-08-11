@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>多维度信令数据分析系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <!-- Loading Bootstrap -->
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/common.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-default" id="custom-nav" role="navigation" style="z-index:10000">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="#">多维度信令数据分析系统</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-01">
+        <ul class="nav navbar-nav"> 
+		</ul>
+
+      </div><!-- /.navbar-collapse -->
+    </nav><!-- /navbar -->
+
+    <div class="breadcrumb container">
+      <div class="row">
+            <div class="input-group btn-group col-md-3 floatL">
+              <span class="input-group-addon">
+                <input type="checkbox" name="all" value="ct" />
+                 地市
+              </span>
+              <select id="select_city" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+            </div>
+            <div class="input-group btn-group col-md-3 floatL">
+              <span class="input-group-addon">
+                <input type="checkbox" name="all" value="ap" />
+                 APN
+              </span>
+              <select id="select_APN" multiple="multiple">
+                <option value="cmnet">cmnet</option>
+                <option value="cmwap">cmwap</option>
+              </select>
+            </div>
+            <div class="input-group btn-group  col-md-3 floatL">
+              <span class="input-group-addon">
+                <input type="checkbox" name="all" value="pr" />
+                     时段
+              </span>
+              <select id="select_datetime" multiple="multiple">
+                <option value="07:00-08:00">07:00-08:00</option>
+                <option value="08:00-09:00">08:00-09:00</option>
+                <option value="09:00-10:00">09:00-10:00</option>
+                <option value="10:00-11:00">10:00-11:00</option>
+                <option value="11:00-12:00">11:00-12:00</option>
+                <option value="12:00-13:00">12:00-13:00</option>
+                <option value="13:00-14:00">13:00-14:00</option>
+                <option value="14:00-15:00">14:00-15:00</option>
+                <option value="15:00-16:00">15:00-16:00</option>
+                <option value="16:00-17:00">16:00-17:00</option>
+                <option value="17:00-18:00">17:00-18:00</option>
+                <option value="18:00-19:00">18:00-19:00</option>
+                <option value="19:00-20:00">19:00-20:00</option>
+                <option value="20:00-21:00">20:00-21:00</option>
+                <option value="21:00-22:00">21:00-22:00</option>
+                <option value="22:00-23:00">22:00-23:00</option>
+                <option value="23:00-24:00">23:00-24:00</option>
+              </select>
+            </div>
+            <div class="input-group btn-group col-md-3 floatL">
+              <span class="input-group-addon">
+                <input type="checkbox" name="all" value="sv" />
+                 业务
+              </span>
+              <select id="select_service" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+            </div>
+            <div class="input-group btn-group col-md-7 floatL">
+              <span class="input-group-addon">
+                <input type="checkbox" name="all" value="ft" />
+                 终端类型
+              </span>
+              <select id="select_terminal" multiple="multiple">
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+              </select>
+              <select id="select_terminal_2" multiple="multiple">
+              </select>
+            </div>
+            <button id="btn_apply_search" name="btn_apply_search" class="btn btn-primary btn-wide">提交查询</button>
+       </div>
+    </div>
+
+
+    <ul id="myTab" class="nav nav-tabs">
+     <li class="active">
+        <a href="#div_table_search_result" data-toggle="tab">
+           表
+        </a>
+     </li>
+     <li><a href="#div_charts_search_result" data-toggle="tab">图</a></li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+      <div class="table-responsive tab-pane fade in active" id="div_table_search_result">
+      	<table class="table table-hover table-striped" id="table_search_result">
+          <!-- <caption>Optional table caption.</caption> -->
+  	        <thead>
+                  <tr id="thead">
+                      <th>#</th>
+                      <th>时段</th>
+                      <th>地市</th>
+                      <th>业务</th>
+                      <th>APN</th>
+                      <th>终端类型</th>
+                      <th>流量 Bytes</th>
+                      <th>大包下载均速 KB/s</th>
+                      <th>小包平均时延 ms</th>
+                  </tr>
+              </thead>
+
+              <tbody id="tbody">
+                  <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>@mdo</td>
+                      <td>@mdo</td>                    
+                      <td>@mdo</td>                 
+                      <td>@mdo</td>          
+                      <td>@mdo</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                      <td>@fat</td>
+                      <td>@fat</td>                   
+                      <td>@fat</td>                 
+                      <td>@mdo</td>          
+                      <td>@mdo</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>@twitter</td>
+                      <td>@twitter</td>
+                      <td>@twitter</td>
+                      <td>@twitter</td>                 
+                      <td>@mdo</td>          
+                      <td>@mdo</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div> <!-- div id="div_table_search_result" -->
+      <div  class="tab-pane fade" id="div_charts_search_result">
+
+        <div id="chart1" style="min-width: 500px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="chart2" style="min-width: 620px; height: 800px; max-width: 1200px; margin: 0 auto"></div>
+      </div><!-- div id="div_charts_search_result" -->
+    </div><!-- div id="myTabContent" -->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/shortable-table.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/flat-ui.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+
+	<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <script src="js/application.js"></script>
+
+
+</body>
+</html>

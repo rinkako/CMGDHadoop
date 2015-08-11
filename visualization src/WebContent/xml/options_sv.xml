@@ -1,0 +1,23 @@
+<xml>
+<option value="音频">音频</option>
+<option value="视频">视频</option>
+<option value="彩信">彩信</option>
+<option value="搜索">搜索</option>
+<option value="邮箱">邮箱</option>
+<option value="网络购物">网络购物</option>
+<option value="社交">社交</option>
+<option value="即时通信">即时通信</option>
+<option value="其他">其他</option>
+<option value="新闻资讯">新闻资讯</option>
+<option value="学习教育">学习教育</option>
+<option value="游戏">游戏</option>
+<option value="金融理财">金融理财</option>
+<option value="影音图像">影音图像</option>
+<option value="安全防护">安全防护</option>
+<option value="旅游出行">旅游出行</option>
+<option value="便捷生活">便捷生活</option>
+<option value="工具">工具</option>
+<option value="阅读">阅读</option>
+<option value="浏览器">浏览器</option>
+<option value="应用商店">应用商店</option>
+</xml>

@@ -1,0 +1,111 @@
+body{
+  padding: 30px;
+  color: #FFF;
+  background-image: url(../img/1.jpg);
+  overflow: hidden;
+}
+.login-form:before {
+  display: none;
+}
+.login-form-wrapper{
+  position: relative;
+  width: 360px;
+  height: 250px;
+  margin: 20px auto;
+  z-index: 10000;
+}
+.left{
+  position: relative;
+		float: left;
+}
+.right{
+  position: relative;
+		float: right;
+}
+
+div.btn-group.open ul{
+  max-height: 220px;
+}/*
+#checkinform div.btn-group>div.ulwrapper{
+  opacity: 0;
+  visibility: hidden;
+}*/
+
+#name {
+  position: relative;
+  left:0px;
+  z-index: 10000;
+  width: 100%;
+}
+#substitute_checkbox{
+  left: 230px;
+  margin-bottom: 20px;
+  margin-right: 0px;
+  width: 100px;
+  color: #ECF0F1;
+}
+#substitute_checkbox.checked{
+  color: #1ABC9C;
+}
+.subcheckedselect#name {
+  width: 45%;
+  float: right;
+}
+.subcheckedselect.substitute_name {
+  width: 45%;
+  float: left;
+}
+.substitute_name {
+  position: relative;
+  float: left;
+  width: 45%;
+  padding: 0px;
+  margin: 0px;
+  display: none;
+  z-index: 10001;
+}
+.substitute_name div ul {
+  height: 300px;
+}
+#dai {
+  position: relative;
+  float: right;
+  margin-top: -45px;
+  margin-right: -25px;
+  color: #ECF0F1;
+}
+.checkin-opt br{
+  float: left;
+  height: 0px;
+}
+
+#shift button {
+  float: left;
+  margin-top: 20px;
+}
+
+/*提交按钮样式*/
+.div_button {
+  position: relative;
+  padding-top: 30px;
+  margin: 0px auto 0px auto;
+  width: 95%;
+}
+/*签到框样式*/
+#div_check_in {
+  background-color: #1570a6;
+  opacity: 0.9; 
+	position: absolute;
+	padding: 0px 25px 0px 20px;
+	float: left;
+	left: 55%;
+	top: 25%;
+	border: solid 0px #FFF;
+	width: 390px;
+	height: 340px;
+}
+p.check_in {
+	color: #FFF;
+	font-size: 26px;
+  margin: 30px 0px -10px 0px;
+}

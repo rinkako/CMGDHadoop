@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>信息维度查询</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loading Bootstrap -->
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-3.0.3.min.js"></script>
+ 
+<!-- Include the plugin's CSS and JS: -->
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+ 
+
+
+</head>
+<body>
+    <div class="btn-group" >
+<!-- Build your select: -->
+<select multiple="multiple" id="example28">
+  <option value="cheese">Cheese</option>
+  <option value="tomatoes">Tomatoes</option>
+  <option value="mozarella">Mozzarella</option>
+  <option value="mushrooms">Mushrooms</option>
+  <option value="pepperoni">Pepperoni</option>
+  <option value="onions">Onions</option>
+</select>
+                        <!-- <select id="example28" multiple="multiple"></select> -->
+          <select class="form-control select select-primary mbl" data-toggle="select">
+            <optgroup label="Profile">
+              <option value="0">My Profile</option>
+              <option value="1">My Friends</option>
+            </optgroup>
+            <optgroup label="System">
+              <option value="2">Messages</option>
+              <option value="3">My Settings</option>
+              <option value="4">Logout</option>
+            </optgroup>
+          </select>
+ </div>
+<!-- Initialize the plugin: -->
+    <script src="js/common.js"></script>
+</body>
