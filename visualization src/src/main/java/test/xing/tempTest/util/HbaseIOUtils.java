@@ -388,7 +388,9 @@ public class HbaseIOUtils {
             	String[] rowKeys = (new String(r.getRow())).replace("$#", "").split("\\$");
             	for (String rowKey : rowKeys) {
 					String[] tempKV = rowKey.split(":");
-	            	kvMap.put(tempKV[0], tempKV[1]);
+//					String tempValue ;
+//					tempValue=(tempKV.length == 1)? rowKey:tempKV[1];
+	            	kvMap.put(tempKV[0], (tempKV.length == 1)? rowKey:tempKV[1]);
 				}
                 for (KeyValue keyValue : r.raw()) {
                 	kvMap.put(new String(keyValue.getQualifier()), new String(keyValue.getValue()));
@@ -459,7 +461,7 @@ public class HbaseIOUtils {
 //        System.out.println("Dash OK");
         //getResult("hbase_naive_cube", "ap:cmnet$pr:15$ft:飞利浦_TD-T3500$#");
 //        String myregex = "^(ct:(梅州市|汕尾市|河源市)\\$ap:(cmnet|cmwap)\\$sv:[^$]*\\$#)$";
-        String myregex = "^(.*)$";
+        String myregex = "^(#)$";
         getResultByRegex("hbase_naive_cube", myregex);
         System.out.println("执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒");
         

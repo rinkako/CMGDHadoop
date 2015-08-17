@@ -2,7 +2,7 @@
         /**
             “图”标签页中图表的生成
         */
-        $.fn.createChart=function (date_input) {
+        $.fn.createPi=function (title,date_input) {
             $(this).highcharts({
                 chart: {
                     plotBackgroundColor: null,
@@ -12,7 +12,7 @@
                    // margin: ["0","0","0","0"]
                 },
                 title: {
-                    text: 'Browser market shares January, 2015 to May, 2015'
+                    text: title
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -41,7 +41,90 @@
                 }]
             });
         }
+        
 
+        $.fn.createBar=function (title,categories,data1,data2) {
+	        $(this).highcharts({
+	            chart: {
+	                zoomType: 'xy'
+	            },
+	            title: {
+	                text: title
+	            },
+	            subtitle: {
+	                text: ' '
+	            },
+	            xAxis: [{
+//	                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//	                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+	            	categories: categories,
+	                crosshair: true
+	            }],
+	            yAxis: [{ // Primary yAxis
+	                labels: {
+	                    format: '{value}KB/s',
+	                    style: {
+	                        color: Highcharts.getOptions().colors[1]
+	                    }
+	                },
+	                title: {
+	                    text: '大包下载均速',
+	                    style: {
+	                        color: Highcharts.getOptions().colors[1]
+	                    }
+	                }
+	            }, { // Secondary yAxis
+	                title: {
+	                    text: '小包平均时延',
+	                    style: {
+	                        color: Highcharts.getOptions().colors[0]
+	                    }
+	                },
+	                labels: {
+	                    format: '{value} ms',
+	                    style: {
+	                        color: Highcharts.getOptions().colors[0]
+	                    }
+	                },
+	                opposite: true
+	            }],
+	            tooltip: {
+	                shared: true,
+//                    pointFormat: '{point.y}'
+	            },
+	            legend: {
+	                layout: 'vertical',
+	                align: 'left',
+	                x: 120,
+	                verticalAlign: 'top',
+	                y: 100,
+	                floating: true,
+	                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+	            },
+                credits: {
+                    enabled: false
+                },
+	            series: [{
+	                name: '小包平均时延',
+	                type: 'column',
+	                yAxis: 1,
+//	                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+	                data: data2,
+	                tooltip: {
+	                    valueSuffix: ' ms'
+	                }
+	
+	            }, {
+	                name: '大包下载均速',
+	                type: 'column',
+//	                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+	                data: data1,
+	                tooltip: {
+	                    valueSuffix: ' KB/s'
+	                }
+	            }]
+	        });
+        }
         /**
             调用插件提供的函数使下拉菜单可以多选
         */
@@ -270,8 +353,32 @@
             },
             success: function(data){
                 $('#table_search_result').empty();
-                 var jsonObj = $.parseJSON(data); 
-                 $('#table_search_result').buildResultTable(jsonObj);
+                 var jsonObj = $.parseJSON(data);
+//                 if(jsonObj.chart.c);
+                 (typeof(jsonObj.chart_pi.ct)!="undefined")?$('#chart_ct').show().createPi('各市总流量',jsonObj.chart_pi.ct): $('#chart_ct').hide();
+                 (typeof(jsonObj.chart_pi.ap)!="undefined")?$('#chart_ap').show().createPi('各APN总流量',jsonObj.chart_pi.ap): $('#chart_ap').hide();
+                 (typeof(jsonObj.chart_pi.sv)!="undefined")?$('#chart_sv').show().createPi('各服务总流量',jsonObj.chart_pi.sv): $('#chart_sv').hide();
+                 (typeof(jsonObj.chart_pi.ft)!="undefined")?$('#chart_ft').show().createPi('各终端总流量',jsonObj.chart_pi.ft): $('#chart_ft').hide();
+                 (typeof(jsonObj.chart_pi.pr)!="undefined")?$('#chart_pr').show().createPi('各时段总流量',jsonObj.chart_pi.pr): $('#chart_pr').hide();
+                 (typeof(jsonObj.chart_bar.ct)!="undefined")?
+                		 $('#bar_ct').show().createBar('各市大包下载均速及小包平均时延',jsonObj.chart_bar.ct.categories,jsonObj.chart_bar.ct.data1,jsonObj.chart_bar.ct.data2)
+                		 : $('#bar_ct').hide();
+                (typeof(jsonObj.chart_bar.sv)!="undefined")?
+                		$('#bar_sv').show().createBar('各服务大包下载均速及小包平均时延',jsonObj.chart_bar.sv.categories,jsonObj.chart_bar.sv.data1,jsonObj.chart_bar.sv.data2)
+               		 : $('#bar_sv').hide();
+                (typeof(jsonObj.chart_bar.pr)!="undefined")?
+                		$('#bar_pr').show().createBar('各时段大包下载均速及小包平均时延',jsonObj.chart_bar.pr.categories,jsonObj.chart_bar.pr.data1,jsonObj.chart_bar.pr.data2)
+               		 : $('#bar_pr').hide();
+                (typeof(jsonObj.chart_bar.ap)!="undefined")?
+                		$('#bar_ap').show().createBar('各APN大包下载均速及小包平均时延',jsonObj.chart_bar.ap.categories,jsonObj.chart_bar.ap.data1,jsonObj.chart_bar.ap.data2)
+               		 : $('#bar_ap').hide();
+//                 $('#bar_ct').createBar('各市大包下载均速及小包平均时延',jsonObj.chart_bar.ct.categories,jsonObj.chart_bar.ct.data1,jsonObj.chart_bar.ct.data2);
+//                 $('#bar_sv').createBar('各市大包下载均速及小包平均时延',jsonObj.chart_bar.sv.categories,jsonObj.chart_bar.sv.data1,jsonObj.chart_bar.sv.data2);
+//                 $('#bar_pr').createBar('各市大包下载均速及小包平均时延',jsonObj.chart_bar.pr.categories,jsonObj.chart_bar.pr.data1,jsonObj.chart_bar.pr.data2);
+//                 $('#bar_ap').createBar('各市大包下载均速及小包平均时延',jsonObj.chart_bar.ap.categories,jsonObj.chart_bar.ap.data1,jsonObj.chart_bar.ap.data2);
+//                 div_charts_search_result
+                 $('#table_search_result').buildResultTable(jsonObj.table);
+//                 alert(jsonObj.table[0].totalbyte);
                 ex1 = new tableSort('table_search_result',1,2,999,'up','down','hov');
             },
             error: function(data){
@@ -302,8 +409,7 @@
                         name: "Proprietary or Undetectable",
                         y: 0.2
                     }];
-        $('#chart1').createChart(chartdata);
          // $('#chart2').createChart();
-
+//        $('#container').createBar();
 });
                     
